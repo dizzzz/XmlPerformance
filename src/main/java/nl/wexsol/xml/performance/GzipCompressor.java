@@ -15,11 +15,16 @@ public class GzipCompressor implements Compressor {
         GZIPOutputStream gos = new GZIPOutputStream(os);
         IOUtils.copy(is.getByteStream(), gos);
         gos.finish();
-
+        gos.flush();
     }
 
     @Override
     public String getShortName() {
         return "gzip";
+    }
+
+    @Override
+    public String getFilenameExtension() {
+        return ".gz";
     }
 }

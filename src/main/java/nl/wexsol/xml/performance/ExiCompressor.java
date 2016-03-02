@@ -37,11 +37,18 @@ public class ExiCompressor implements Compressor {
         XMLReader xmlReader = XMLReaderFactory.createXMLReader();
         xmlReader.setContentHandler(exiResult.getHandler());
         xmlReader.parse(is);
+
+        os.flush();
     }
 
     @Override
     public String getShortName() {
         return "exi";
+    }
+
+    @Override
+    public String getFilenameExtension() {
+        return ".exi";
     }
 
 

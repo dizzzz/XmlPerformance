@@ -22,10 +22,16 @@ public class FastInfosetCompressor implements Compressor {
         saxParser.setProperty("http://xml.org/sax/properties/lexical-handler", saxDocumentSerializer);
         saxParser.parse(is, saxDocumentSerializer);
 
+        os.flush();
     }
 
     @Override
     public String getShortName() {
         return "fastinfoset";
+    }
+
+    @Override
+    public String getFilenameExtension() {
+        return ".fi";
     }
 }

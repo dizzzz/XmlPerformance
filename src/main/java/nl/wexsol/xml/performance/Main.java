@@ -20,11 +20,9 @@ import org.xml.sax.helpers.XMLReaderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,35 +34,36 @@ import java.util.zip.GZIPOutputStream;
 /**
  * Created by wessels on 15/2/16.
  */
-public class XmlCompressor {
+public class Main {
 
-    public static final String IN_XML = "in2.xml";
+    public static final String IN_XML = "in.xml";
 
 
     public static void main(String[] args) {
 
+        Path dataDir = Paths.get("data");
+        Path xmlFile = dataDir.resolve("in.xml");
+
         try {
-            System.out.println(FileUtils.byteCountToDisplaySize(Files.size(Paths.get(IN_XML))));
+            System.out.println(FileUtils.byteCountToDisplaySize(Files.size(Paths.get("data", IN_XML))));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Compressor comps[] = {new GzipCompressor(), new ExiCompressor(), new ExiSchemaCompressor(), new FastInfosetCompressor()};
-        Arrays.asList(comps).stream().filter(x -> (x instanceof SingleSchema)).forEach(xc -> ((SingleSchema) xc).setSchema(Paths.get("ADELler_v2.5.1.xml")));
+        Compressor compressors[] = {new GzipCompressor(), new ExiCompressor(), new ExiSchemaCompressor(), new FastInfosetCompressor()};
+        Arrays.asList(compressors).stream().filter(x -> (x instanceof SingleSchema)).forEach(xc -> ((SingleSchema) xc).setSchema(dataDir.resolve("in.xsd")));
 
 
+        for (Compressor c : compressors) {
 
-        for (Compressor xc : comps) {
+            Path out = dataDir.resolve(c.getShortName() + "_" + IN_XML + c.getFilenameExtension());
 
-            try (InputStream inputStream = Files.newInputStream(Paths.get(IN_XML));
-                 CountingOutputStream os = new CountingOutputStream(new NullOutputStream())) {
+            try (InputStream inputStream = Files.newInputStream(xmlFile);
+                 CountingOutputStream os = new CountingOutputStream(new BufferedOutputStream(Files.newOutputStream(out)))) {
 
+                c.process(new InputSource(inputStream), os);
 
-                xc.process(new InputSource(inputStream), os);
-
-                os.flush();
-                System.out.println(xc.getShortName() + "=" + FileUtils.byteCountToDisplaySize(os.getByteCount()));
-
+                System.out.println(c.getShortName() + "=" + FileUtils.byteCountToDisplaySize(os.getByteCount()));
 
             } catch (Throwable t) {
                 t.printStackTrace();
@@ -72,18 +71,17 @@ public class XmlCompressor {
 
         }
 
-        for (Compressor xc : comps) {
+        for (Compressor c : compressors) {
 
             List<Long> values = new ArrayList<>();
 
             for(int i=0 ; i<10 ; i++) {
-                try (InputStream inputStream = new BufferedInputStream(Files.newInputStream(Paths.get(IN_XML)));
+                try (InputStream inputStream = new BufferedInputStream(Files.newInputStream(xmlFile));
                      OutputStream os = new NullOutputStream()) {
 
                     long begin = System.currentTimeMillis();
 
-                    xc.process(new InputSource(inputStream), os);
-                    os.flush();
+                    c.process(new InputSource(inputStream), os);
 
                     long end = System.currentTimeMillis();
 
@@ -98,7 +96,7 @@ public class XmlCompressor {
 
             LongSummaryStatistics collect = values.stream().collect(Collectors.summarizingLong(Long::longValue));
 
-            System.out.println(xc.getShortName() + "=" + collect.toString());
+            System.out.println(c.getShortName() + "=" + collect.toString());
         }
 
 

@@ -13,4 +13,6 @@ public interface Compressor {
 
     String getShortName();
 
+    String getFilenameExtension();
+
 }

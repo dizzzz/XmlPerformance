@@ -3,7 +3,7 @@ A small project to measure performance of XML tooling (processors)
 
 
 ## Get started:
-* add a file 'in.xml' and 'in.xsd' into the `data` directory (yet missing)
+* add a file `in.xml` and `in.xsd` into the `data` directory (yet missing)
 * run `nl.wexsol.xml.performance.parse.stax.Main` or `nl.wexsol.xml.performance.compression.Main`
 
 # Results

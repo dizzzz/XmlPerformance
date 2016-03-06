@@ -14,6 +14,7 @@ Details
 * 100 iterations
 
 ## Compress
+```
 Original size: 6 MB
 Repetitions: 10
 
@@ -28,9 +29,10 @@ gzip: avg=146.5 ms  max=196 ms  min=139 ms
 exi: avg=972.3 ms  max=1057 ms  min=930 ms
 exi-schema: avg=931.5 ms  max=1206 ms  min=883 ms
 fastinfoset: avg=151.3 ms  max=192 ms  min=143 ms
-
+```
 
 ## StAX
+```
 Original size: 6 MB
 Repetitions: 100
 
@@ -45,3 +47,4 @@ StreamReader: #=316854  avg=70.05 ms  max=96 ms  min=66 ms
 com.ctc.wstx.stax.WstxInputFactory
 EventReader: #=316854  avg=145.99 ms  max=316 ms  min=137 ms
 StreamReader: #=316854  avg=88.43 ms  max=97 ms  min=87 ms
+```

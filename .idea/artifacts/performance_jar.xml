@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="performance:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/performance_jar</output-path>
+    <root id="root">
+      <element id="archive" name="performance.jar">
+        <element id="module-output" name="performance" />
+      </element>
+      <element id="library" level="project" name="Maven: com.fasterxml:aalto-xml:1.0.0" />
+      <element id="library" level="project" name="Maven: org.codehaus.woodstox:stax2-api:4.0.0" />
+      <element id="library" level="project" name="Maven: xerces:xercesImpl:2.11.0" />
+      <element id="library" level="project" name="Maven: com.siemens.ct.exi:exificient:0.9.5" />
+      <element id="library" level="project" name="Maven: javax.xml:jsr173:1.0" />
+      <element id="library" level="project" name="Maven: com.sun.xml.fastinfoset:FastInfoset:1.2.11" />
+      <element id="library" level="project" name="Maven: com.fasterxml.woodstox:woodstox-core:5.0.2" />
+      <element id="library" level="project" name="Maven: commons-io:commons-io:2.4" />
+      <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.4.01" />
+      <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.5" />
+      <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.5" />
+    </root>
+  </artifact>
+</component>

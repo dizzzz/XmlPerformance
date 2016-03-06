@@ -1,5 +1,6 @@
-package nl.wexsol.xml.performance;
+package nl.wexsol.xml.performance.compression.compressors;
 
+import nl.wexsol.xml.performance.compression.Compressor;
 import org.apache.commons.io.IOUtils;
 import org.xml.sax.InputSource;
 
@@ -7,7 +8,7 @@ import java.io.OutputStream;
 import java.util.zip.GZIPOutputStream;
 
 /**
- * Created by wessels on 29/2/16.
+ * Perform GZIP compression operations on (XML) documents
  */
 public class GzipCompressor implements Compressor {
     @Override

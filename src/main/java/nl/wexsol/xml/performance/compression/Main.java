@@ -1,25 +1,14 @@
-package nl.wexsol.xml.performance;
+package nl.wexsol.xml.performance.compression;
 
-import com.siemens.ct.exi.CodingMode;
-import com.siemens.ct.exi.EXIFactory;
-import com.siemens.ct.exi.GrammarFactory;
-import com.siemens.ct.exi.api.sax.EXIResult;
-import com.siemens.ct.exi.exceptions.EXIException;
-import com.siemens.ct.exi.helpers.DefaultEXIFactory;
-import com.sun.tools.classfile.Type;
-import com.sun.xml.fastinfoset.sax.SAXDocumentSerializer;
+import nl.wexsol.xml.performance.compression.compressors.ExiCompressor;
+import nl.wexsol.xml.performance.compression.compressors.ExiSchemaCompressor;
+import nl.wexsol.xml.performance.compression.compressors.FastInfosetCompressor;
+import nl.wexsol.xml.performance.compression.compressors.GzipCompressor;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.CountingOutputStream;
 import org.apache.commons.io.output.NullOutputStream;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -29,10 +18,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.LongSummaryStatistics;
 import java.util.stream.Collectors;
-import java.util.zip.GZIPOutputStream;
 
 /**
- * Created by wessels on 15/2/16.
+ *  Measure performance of XML compressors
  */
 public class Main {
 

@@ -21,5 +21,6 @@
     <orderEntry type="library" name="Maven: org.codehaus.woodstox:stax2-api:4.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.5" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.woodstox:woodstox-core:5.0.2" level="project" />
   </component>
 </module>

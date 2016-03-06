@@ -1,6 +1,7 @@
-package nl.wexsol.xml.performance;
+package nl.wexsol.xml.performance.compression.compressors;
 
 import com.sun.xml.fastinfoset.sax.SAXDocumentSerializer;
+import nl.wexsol.xml.performance.compression.Compressor;
 import org.xml.sax.InputSource;
 
 import javax.xml.parsers.SAXParser;
@@ -8,7 +9,7 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.OutputStream;
 
 /**
- * Created by wessels on 29/2/16.
+ * Perform FastInfoSet compression operations on XML documents
  */
 public class FastInfosetCompressor implements Compressor {
     @Override

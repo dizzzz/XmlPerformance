@@ -1,12 +1,13 @@
-package nl.wexsol.xml.performance;
+package nl.wexsol.xml.performance.compression.compressors;
 
 import com.siemens.ct.exi.GrammarFactory;
 import com.siemens.ct.exi.exceptions.EXIException;
+import nl.wexsol.xml.performance.compression.SingleSchema;
 
 import java.nio.file.Path;
 
 /**
- * Created by wessels on 1/3/16.
+ * Perform EXI compression operations on XML documents while applying an XML schema
  */
 public class ExiSchemaCompressor extends ExiCompressor implements SingleSchema {
     @Override

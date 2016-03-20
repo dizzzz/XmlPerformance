@@ -6,20 +6,18 @@ Used StAX Parsers:
 - https://github.com/FasterXML/aalto-xml
 - Oracle Java Bundled reference implementation
 
-
-
 ## Get started:
 * add a file `in.xml` and `in.xsd` into the `data` directory (yet missing)
 * run `nl.wexsol.xml.performance.parse.stax.Main` or `nl.wexsol.xml.performance.compression.Main`
 
-# Results
 
-Details 
+## Dataset
 * 6.8 Mb XML
 * 903 kb XSD
 * 100 iterations
 
-## Compress
+## Results
+### Compression
 ```
 Original size: 6 MB
 Repetitions: 10
@@ -42,7 +40,7 @@ Conclusions (for this dataset!)
 - EXI compression is 5-6 times slower compared to GZIP compression
 - EXI compression is yields in files 1/2 the size compared to GZIP
 
-## StAX
+### StAX
 ```
 Original size: 6 MB
 Repetitions: 100

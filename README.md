@@ -62,4 +62,4 @@ StreamReader: #=316854  avg=88.43 ms  max=97 ms  min=87 ms
 
 Conclusions (for this dataset!)
 - In general, StreamReaders are upto 2 times faster compared to EventReaders
-- The "Aalto XML processor" is the fastest StAX parser followed by the WoodStox parser. The Oracle VM provides the slowest StAx parsers.
+- The "Aalto XML processor" is the fastest StAX parser followed by the WoodStox parser. The Oracle VM provides the slowest StAX parser.

@@ -24,15 +24,19 @@ Repetitions: 10
 
 Compressed sizes:
 gzip=546 KB
+xz=243 KB
+bzip2=275 KB
 exi=235 KB
 exi-schema=198 KB
 fastinfoset=1 MB
 
 Timing: 
-gzip: avg=146.5 ms  max=196 ms  min=139 ms
-exi: avg=972.3 ms  max=1057 ms  min=930 ms
-exi-schema: avg=931.5 ms  max=1206 ms  min=883 ms
-fastinfoset: avg=151.3 ms  max=192 ms  min=143 ms
+gzip: avg=142.4 ms  max=150 ms  min=139 ms
+xz: avg=2859.0 ms  max=3017 ms  min=2660 ms
+bzip2: avg=1743.1 ms  max=2027 ms  min=1664 ms
+exi: avg=967.4 ms  max=987 ms  min=954 ms
+exi-schema: avg=965.8 ms  max=1045 ms  min=924 ms
+fastinfoset: avg=160.0 ms  max=244 ms  min=147 ms
 ```
 
 Conclusions (for this dataset!)

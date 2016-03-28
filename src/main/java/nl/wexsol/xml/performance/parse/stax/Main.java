@@ -2,6 +2,7 @@ package nl.wexsol.xml.performance.parse.stax;
 
 import nl.wexsol.xml.performance.parse.stax.readers.EventReader;
 import nl.wexsol.xml.performance.parse.stax.readers.StreamReader;
+import org.apache.commons.io.FileUtils;
 
 import javax.xml.stream.XMLInputFactory;
 import java.io.BufferedInputStream;
@@ -39,6 +40,14 @@ public class Main {
         // Setup data
         Path dataDir = Paths.get("data");
         Path xmlFile = dataDir.resolve("in.xml");
+
+        try {
+            System.out.println("Original size: " + FileUtils.byteCountToDisplaySize(Files.size(Paths.get("data", "in.xml"))));
+            System.out.println("Repetitions: " + REPETITIONS  );
+            System.out.println();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         Main mn = new Main();
 
@@ -85,7 +94,7 @@ public class Main {
                 final LongSummaryStatistics statistics = durations.stream().collect(Collectors.summarizingLong(Long::longValue));
 
 
-                System.out.printf("%s: #=%s  avg=%s ms  max=%s ms  min=%s ms%n", reader.getName(), l, statistics.getAverage(), statistics.getMax(), statistics.getMin());
+                System.out.printf("%s: #elements=%s  avg=%s ms  max=%s ms  min=%s ms%n", reader.getName(), l, statistics.getAverage(), statistics.getMax(), statistics.getMin());
 
             }
 

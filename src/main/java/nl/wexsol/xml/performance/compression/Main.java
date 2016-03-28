@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 public class Main {
 
     public static final String IN_XML = "in.xml";
+    public static final int REPETITIONS = 10;
 
 
     public static void main(String[] args) {
@@ -33,7 +34,9 @@ public class Main {
         Path xmlFile = dataDir.resolve("in.xml");
 
         try {
-            System.out.println(FileUtils.byteCountToDisplaySize(Files.size(Paths.get("data", IN_XML))));
+            System.out.println("Original size: " + FileUtils.byteCountToDisplaySize(Files.size(Paths.get("data", IN_XML))));
+            System.out.println("Repetitions: " + REPETITIONS  );
+            System.out.println();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,6 +44,8 @@ public class Main {
         Compressor compressors[] = {new GzipCompressor(), new ExiCompressor(), new ExiSchemaCompressor(), new FastInfosetCompressor()};
         Arrays.asList(compressors).stream().filter(x -> (x instanceof SingleSchema)).forEach(xc -> ((SingleSchema) xc).setSchema(dataDir.resolve("in.xsd")));
 
+
+        System.out.println("Compressed sizes:");
 
         for (Compressor c : compressors) {
 
@@ -59,11 +64,14 @@ public class Main {
 
         }
 
+        System.out.println();
+        System.out.println("Timing: ");
+
         for (Compressor c : compressors) {
 
             List<Long> values = new ArrayList<>();
 
-            for(int i=0 ; i<10 ; i++) {
+            for(int i = 0; i< REPETITIONS; i++) {
                 try (InputStream inputStream = new BufferedInputStream(Files.newInputStream(xmlFile));
                      OutputStream os = new NullOutputStream()) {
 
@@ -82,9 +90,11 @@ public class Main {
 
             }
 
-            LongSummaryStatistics collect = values.stream().collect(Collectors.summarizingLong(Long::longValue));
+            LongSummaryStatistics statistics = values.stream().collect(Collectors.summarizingLong(Long::longValue));
 
-            System.out.println(c.getShortName() + "=" + collect.toString());
+            System.out.printf("%s: avg=%s ms  max=%s ms  min=%s ms%n",
+                    c.getShortName(),  statistics.getAverage(), statistics.getMax(), statistics.getMin());
+
         }
 
 

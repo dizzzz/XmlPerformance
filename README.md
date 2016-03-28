@@ -43,6 +43,7 @@ Conclusions (for this dataset!)
 - fastinfoset compression yields in a larger file size compared to the generic GZIP compressor
 - EXI compression is 5-6 times slower compared to GZIP compression
 - EXI compression is yields in files 1/2 the size compared to GZIP
+- XZ and Bzip2 compress better than GZip but are resp. 20 and 10 times slower.
 
 ### StAX
 ```

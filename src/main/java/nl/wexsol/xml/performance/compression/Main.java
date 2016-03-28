@@ -1,9 +1,6 @@
 package nl.wexsol.xml.performance.compression;
 
-import nl.wexsol.xml.performance.compression.compressors.ExiCompressor;
-import nl.wexsol.xml.performance.compression.compressors.ExiSchemaCompressor;
-import nl.wexsol.xml.performance.compression.compressors.FastInfosetCompressor;
-import nl.wexsol.xml.performance.compression.compressors.GzipCompressor;
+import nl.wexsol.xml.performance.compression.compressors.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.output.CountingOutputStream;
 import org.apache.commons.io.output.NullOutputStream;
@@ -38,7 +35,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        Compressor compressors[] = {new GzipCompressor(), new ExiCompressor(), new ExiSchemaCompressor(), new FastInfosetCompressor()};
+        Compressor compressors[] = {new GzipCompressor(), new XzCompressor(), new BZip2Compressor(),  new ExiCompressor(), new ExiSchemaCompressor(), new FastInfosetCompressor()};
         Arrays.asList(compressors).stream().filter(x -> (x instanceof SingleSchema)).forEach(xc -> ((SingleSchema) xc).setSchema(dataDir.resolve("in.xsd")));
 
 

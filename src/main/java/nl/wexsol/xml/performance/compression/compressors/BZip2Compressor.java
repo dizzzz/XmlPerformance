@@ -15,7 +15,7 @@ public class BZip2Compressor implements Compressor {
     @Override
     public void process(InputSource is, OutputStream os) throws Exception {
 
-        BZip2CompressorOutputStream bzos = new BZip2CompressorOutputStream(os, 8);
+        BZip2CompressorOutputStream bzos = new BZip2CompressorOutputStream(os);
         IOUtils.copy(is.getByteStream(), bzos);
         bzos.finish();
         bzos.flush();
@@ -23,11 +23,11 @@ public class BZip2Compressor implements Compressor {
 
     @Override
     public String getShortName() {
-        return "xz";
+        return "bzip2";
     }
 
     @Override
     public String getFilenameExtension() {
-        return ".xz";
+        return ".bz2";
     }
 }

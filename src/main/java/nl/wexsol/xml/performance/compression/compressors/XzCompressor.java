@@ -15,10 +15,10 @@ public class XzCompressor implements Compressor {
     @Override
     public void process(InputSource is, OutputStream os) throws Exception {
 
-        XZCompressorOutputStream xzos = new XZCompressorOutputStream(os, 8);
+        XZCompressorOutputStream xzos = new XZCompressorOutputStream(os);
         IOUtils.copy(is.getByteStream(), xzos);
-        xzos.finish();
         xzos.flush();
+        xzos.finish();
     }
 
     @Override
